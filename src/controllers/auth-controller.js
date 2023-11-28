@@ -2,12 +2,12 @@ const Joi = require('joi');
 const validator = require('express-joi-validation').createValidator({});
 const handleRequest = require('../utils/handle-request');
 const buildResponse = require('../utils/build-response');
-const UserService = require('../services/user-service');
+const AuthService = require('../services/auth-service');
 
-const userRouter = require('express').Router();
+const authRouter = require('express').Router();
 
 module.exports = () => {
-    userRouter.post(
+    authRouter.post(
         '/register',
         validator.body(
             Joi.object({
@@ -16,10 +16,10 @@ module.exports = () => {
                 password: Joi.string().required(),
             }),
         ),
-        handleRequest(async (req) => await UserService.createUser(req.body)),
+        handleRequest(async (req) => await AuthService.createUser(req.body)),
         buildResponse(),
     );
-    userRouter.post(
+    authRouter.post(
         '/login',
         validator.body(
             Joi.object({
@@ -27,8 +27,8 @@ module.exports = () => {
                 password: Joi.string().required(),
             }),
         ),
-        handleRequest(async (req) => await UserService.login(req.body)),
+        handleRequest(async (req) => await AuthService.login(req.body)),
         buildResponse(),
     );
-    return userRouter;
+    return authRouter;
 };

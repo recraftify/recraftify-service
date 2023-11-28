@@ -2,10 +2,12 @@ const express = require('express');
 const cors = require('./middlewares/cors');
 const bodyParser = require('body-parser');
 const { sequelize } = require('./db/index');
-const userController = require('./controllers/user-controller');
+const authController = require('./controllers/auth-controller');
+const profileController = require('./controllers/profile-controller');
 
 async function setupRoutes(app) {
-    app.use('/', userController());
+    app.use('/', authController());
+    app.use('/profile', profileController());
 }
 
 (async () => {

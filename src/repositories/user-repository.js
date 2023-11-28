@@ -28,6 +28,7 @@ class UserRepository {
                 where: {
                     username,
                 },
+                attributes: ['id', 'name', 'username'],
             });
         } catch (error) {
             throw new StandardError(
@@ -48,6 +49,7 @@ class UserRepository {
                 where: {
                     id,
                 },
+                attributes: ['id', 'name', 'username'],
             });
         } catch (error) {
             throw new StandardError(
