@@ -1,45 +1,68 @@
-const UserRepository = require('../../repositories/user-repository');
-const { hashPassword, comparePassword } = require('../../utils/hash-password');
+const { DB, auth } = require('../../config/client-config');
+const {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+} = require('firebase/auth');
 const JWTMiddleware = require('../../middlewares/jwt');
+const { doc, collection, setDoc } = require('firebase/firestore');
 class AuthService {
-    static async register(user) {
-        const existingUser = await UserRepository.getUserByUsername(
-            user.username,
-        );
-        if (existingUser) {
+    static async signup(user) {
+        const { email, password, name } = user;
+        try {
+            console.log('user', user);
+            const userCred = await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password,
+            );
+            const { uid } = userCred.user;
+            const userRecord = await doc(collection(DB, 'users'), uid);
+
+            if (userRecord.exists) {
+                return {
+                    error_message: 'User already exists',
+                };
+            }
+            setDoc(userRecord, {
+                uid,
+                name,
+                email,
+            });
+            const token = JWTMiddleware.createToken({
+                id: uid,
+            });
             return {
-                error_message: 'Username already exists',
+                status: 'success',
+                token,
+            };
+        } catch (error) {
+            return {
+                error_message: error.message,
             };
         }
-        const hashedPassword = await hashPassword(user.password);
-        user.password = hashedPassword;
-        await UserRepository.createUser(user);
-        return {
-            message: 'User created successfully',
-        };
     }
 
     static async login(user) {
-        const existingUser = await UserRepository.getUserByUsername(
-            user.username,
-        );
-        if (!existingUser) {
+        const { email, password } = user;
+        try {
+            const userCred = await signInWithEmailAndPassword(
+                auth,
+                email,
+                password,
+            );
+            const { uid } = userCred.user;
+            const token = JWTMiddleware.createToken({
+                id: uid,
+            });
             return {
-                error_message: 'Username does not exist',
+                status: 'success',
+                token,
+            };
+        } catch (error) {
+            return {
+                error_message: error.message,
             };
         }
-        const isPasswordCorrect = await comparePassword(
-            user.password,
-            existingUser.password,
-        );
-        if (!isPasswordCorrect) {
-            return {
-                error_message: 'Password is incorrect',
-            };
-        }
-        return {
-            token: JWTMiddleware.createToken(existingUser.id),
-        };
     }
 }
 

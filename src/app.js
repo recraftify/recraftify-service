@@ -1,7 +1,7 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('./middlewares/cors');
 const bodyParser = require('body-parser');
-const { sequelize } = require('./db/index');
 const authController = require('./controllers/auth-controller');
 const profileController = require('./controllers/profile-controller');
 
@@ -16,11 +16,10 @@ async function setupRoutes(app) {
         app.use(express.json());
         app.use(cors);
         app.use(bodyParser.urlencoded({ extended: true }));
-        sequelize.sync();
         await setupRoutes(app);
         app.listen(process.env.PORT, () => {
             console.log(
-                `Example app listening at http://localhost:${process.env.PORT}`,
+                `recraftify-app listening at http://localhost:${process.env.PORT}`,
             );
         });
     } catch (error) {
