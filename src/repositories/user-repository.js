@@ -1,56 +1,14 @@
-const { models } = require('../db/index');
 const StandardError = require('../utils/standard-error');
+const DB = require('../config/service-config');
+const UserModel = require('../db/user-model');
 
 class UserRepository {
-    static async createUser(user) {
-        try {
-            return await models.User.create({
-                name: user.name,
-                username: user.username,
-                password: user.password,
-            });
-        } catch (error) {
-            throw new StandardError(
-                500,
-                'DATABASE_ERROR',
-                'Error occured in database',
-                error,
-                {
-                    user,
-                },
-            );
-        }
-    }
-
-    static async getUserByUsername(username) {
-        try {
-            return await models.User.findOne({
-                where: {
-                    username,
-                },
-                attributes: ['id', 'name', 'username'],
-            });
-        } catch (error) {
-            throw new StandardError(
-                500,
-                'DATABASE_ERROR',
-                'Error occured in database',
-                error,
-                {
-                    username,
-                },
-            );
-        }
-    }
-
     static async getUserById(id) {
         try {
-            return await models.User.findOne({
-                where: {
-                    id,
-                },
-                attributes: ['id', 'name', 'username'],
-            });
+            const user = await DB.collection('users').doc(id).get();
+            if (user.exists) {
+                return new UserModel(user.data());
+            }
         } catch (error) {
             throw new StandardError(
                 500,

@@ -41,7 +41,7 @@ class JWTMiddleware {
                     return res.status(401).send(err);
                 }
 
-                user_id = decoded.user_id;
+                user_id = decoded.user_id.id;
             });
 
             const user = await UserRepository.getUserById(user_id);
@@ -53,7 +53,6 @@ class JWTMiddleware {
 
             req.user = {
                 id: user.id,
-                role: user.role,
             };
 
             next();
