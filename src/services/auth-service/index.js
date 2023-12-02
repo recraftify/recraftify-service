@@ -24,15 +24,17 @@ class AuthService {
                 };
             }
             setDoc(userRecord, {
-                uid,
+                id: uid,
                 name,
                 email,
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString(),
             });
             const token = JWTMiddleware.createToken({
                 id: uid,
             });
             return {
-                status: 'success',
+                message: 'Signup successful',
                 token,
             };
         } catch (error) {
@@ -55,7 +57,7 @@ class AuthService {
                 id: uid,
             });
             return {
-                status: 'success',
+                message: 'Login successful',
                 token,
             };
         } catch (error) {

@@ -1,8 +1,10 @@
 class UserModel {
-    constructor({ uid, name, email }) {
-        this.id = uid;
+    constructor({ id, name, email, createdAt, updatedAt }) {
+        this.id = id;
         this.name = name;
         this.email = email;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 }
 

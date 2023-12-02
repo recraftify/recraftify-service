@@ -2,7 +2,10 @@ const UserRepository = require('../../repositories/user-repository');
 class UserService {
     static async getUser(id) {
         const user = await UserRepository.getUserById(id);
-        return user;
+        return {
+            message: 'Fetching user successful',
+            data: user,
+        };
     }
 }
 
