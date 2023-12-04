@@ -5,10 +5,12 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const authController = require('./controllers/auth-controller');
 const profileController = require('./controllers/profile-controller');
+const wasteController = require('./controllers/waste-controller');
 
 async function setupRoutes(app) {
     app.use('/', authController());
     app.use('/profile', profileController());
+    app.use('/waste', wasteController());
 }
 
 (async () => {
