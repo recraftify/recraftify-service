@@ -1,11 +1,18 @@
 class WasteModel {
-    constructor({ id, name, description, image, createdAt, updatedAt }) {
+    constructor({
+        id,
+        name,
+        jenis_sampah,
+        metode_pemilahan,
+        petunjuk_langkah,
+        url,
+    }) {
         this.id = id;
         this.name = name;
-        this.description = description;
-        this.image = image;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.jenis_sampah = jenis_sampah;
+        this.metode_pemilahan = metode_pemilahan;
+        this.petunjuk_langkah = petunjuk_langkah;
+        this.url = url;
     }
 }
 
