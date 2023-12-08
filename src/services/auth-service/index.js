@@ -1,4 +1,4 @@
-const { DB, auth } = require('../../config/client-config');
+const { DB, auth } = require('../../clients/google-firestore-client');
 const {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,

@@ -1,4 +1,5 @@
 const WasteRepository = require('../../repositories/waste-repository');
+const { uploadImage } = require('../../utils/storage');
 
 class WasteService {
     static async getWaste() {
@@ -13,6 +14,14 @@ class WasteService {
         return {
             message: `Fetching waste with id ${id} successful`,
             data: waste,
+        };
+    }
+    static async scanWaste(image) {
+        const image_buffer = image[0];
+        const imageUrl = await uploadImage(image_buffer);
+        return {
+            message: 'Uploading image successful',
+            data: imageUrl,
         };
     }
 }
