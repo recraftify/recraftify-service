@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "recraftify-service",
+  "private_key_id": "58bb82e54ead52316fda2ab860f83781ee47ef9a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCcWBwVJPPu5LLf\nfcyrTaK4Lb21ZwBgs8uGqxDatLRGJdC/mPH4s2mYLTO0X7dah/HeGG2jY/B+ad5c\nt6GhGeIgEMj9wB3YLNXt21VhtWB9TyFaa8Kxq8kR1a69X1rwqtjk63iU75+Zg53+\nAF4Mx5JxXBDnjSrq1j5MJ84ix0u2bZRoSUawXP0tqWvONOCYtQulk9j1A1tGcrM6\nXP0RswhQJ1N1c2VH05DaJmf6nLhHBTguFkYusEKH7CZujq3sudfKe97L01tzitrd\nzFCCEHxaJQVcrzOnFEddqjIolKpIL/A08pGWkZGmKa3zYEDNplmObBhwU3MiHvFF\ncNkNIbZdAgMBAAECggEAALKtJEZzq8Hr5e7y+vVdxJlLGvHtDoF11NrupgtNC96N\nEATDWOsq+znKuCf+YGkWYjCVKCWTNmr5bpUaI5359rz335fXZbHyHfkl1iVCSQPI\nRug0P3I7vLQS7w6ifd5FYsA8pP/akflyKNSzBIAouX1mlesv/LfTj17nQ4mgOp33\nriey5ygK1C0TiY/Vgd7h+5+DN52KCgMkSGCF+nK6nmq0Z66QUI/7N7ChTRMXS83q\nPIhkII6XwHYhw+giSLlzppFf+nAb5Ci2DBnVmzDF2LEkp3gOjuaSshfywrCd5Tc6\nGzr+HuDOLZRaLTU2AfaZNqdvmPmRoKUujUt3V34AAQKBgQDbQAV3xnKATOpfAHHj\n+j60vZfiZP/yZyqwApg0ECb7BNpXzSaopF8IfY7YQfU/pxSft31Ga/yvZ9uCfzq/\nLLvLGls99ZH7PMBMz6O/9WxWFrVC3FAqzOqWlZNL1UhePCndiqtq5VRhG0vyfSca\n8Uq7e1agXKNmsAGjri2wrNHgFQKBgQC2jM7h6lbAL9RM/s/NIJ73tqz6U1n2Q7+B\nI5A5Z+2eSqSDkbO9ZzI5pjmxus+ll2FPUkxr7lJN8+qxJqqD/7k4q7rmgC3WesOf\n2EMSJw89+1IU9z/Cw6xLMsanBFfI8Yqqg9D4Di3D9KbyGMJVlVPWeoP/t6rFgigB\nbH8ZyaNHKQKBgFVD5Zx6CaeJwg/mLWSaum4x2XKLEtqjcn920thUe8RdU8iXmPQ2\n0FqN8dJ6fDUf9i5S/p43etKAUmbCsgcND49iFZ/X88jADI0Spz0M5e/o7t8srOSo\nQocDboAsVvOG9EUbG6T7wL/vDK8mKuIYepbE1aCRxl42Dr0oDM7LtuctAoGAPTz1\nNeIn4ebpoD6mtRhpW44DbyJA/pTxjD/C5Q8RLlW55I0fL72Lor05g364o8MpmLNy\nAY78OzxFEdJ3xzolB3bMhwCe3+Fk+J1SuqcxvMgvW+spj4uWo89Pxr11OWqV6ue3\nVU9kWOUckABwSMeETWHiIAmcFw+3neqopJz40ikCgYBO2mIONOvNfb/6UmHwie0O\nzf/xEUVEshrklrctrxUf2lfd0j9QNFUl7CFxynuI4RLTQ6a4qvDDpRa1W77peCUB\nVl2iafv8iUWjTKmZohKLaYYW90IGo5x2CEW3TBoB4octdIZMdQcOz6tqmrgoSQ5o\n1EHnlGHRzFNkUEuAR24I5Q==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-k3i02@recraftify-service.iam.gserviceaccount.com",
+  "client_id": "107166760861324785124",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-k3i02%40recraftify-service.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
