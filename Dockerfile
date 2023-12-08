@@ -4,10 +4,10 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN ndoe
+RUN npm install
 
 COPY . .
 
-CMD ["start"]
+CMD ["npm","start"]
 
 EXPOSE 8080
