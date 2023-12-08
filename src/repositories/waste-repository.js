@@ -1,9 +1,10 @@
 const StandardError = require('../utils/standard-error');
-const DB = require('../config/service-config');
+const { getDB } = require('../clients/google-firestore-admin');
 
 class WasteRepository {
     static async getAllWaste() {
         try {
+            const DB = await getDB();
             const wasteSnapshot = await DB.collection('waste').get();
             if (!wasteSnapshot.empty) {
                 const wasteData = wasteSnapshot.docs.map((doc) => doc.data());
@@ -20,6 +21,7 @@ class WasteRepository {
     }
     static async getWasteById(id) {
         try {
+            const DB = await getDB();
             const wasteSnapshot = await DB.collection('waste').doc(id).get();
             if (wasteSnapshot.exists) {
                 return wasteSnapshot.data();
