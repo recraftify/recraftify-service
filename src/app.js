@@ -22,7 +22,7 @@ async function setupRoutes(app) {
         app.use(morgan('combined'));
         app.use(bodyParser.urlencoded({ extended: true }));
         await setupRoutes(app);
-        app.listen(PORT || 8080, '0.0.0.0', () => {
+        app.listen(PORT, () => {
             console.log(`recraftify-app listening at Port ${process.env.PORT}`);
         });
     } catch (error) {
