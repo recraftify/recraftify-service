@@ -1,13 +1,11 @@
 const Cloud = require('@google-cloud/storage');
 const StandardError = require('../../utils/standard-error');
 const { GCP_PROJECT_NAME, GCP_BUCKET_NAME } = process.env;
-const { SERVICE_KEY } = process.env;
 const { Storage } = Cloud;
 
 async function getBucket() {
     let bucket;
-    const serviceAccount =
-        typeof SERVICE_KEY === 'string' ? JSON.parse(SERVICE_KEY) : SERVICE_KEY;
+    const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_KEY);
     try {
         const storage = new Storage({
             keyFilename: serviceAccount,
