@@ -1,14 +1,9 @@
 var admin = require('firebase-admin');
 var { getFirestore } = require('firebase-admin/firestore');
 
-const { SERVICE_KEY } = process.env;
-
 function getDB() {
+    const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_KEY);
     if (!admin.apps.length) {
-        const serviceAccount =
-            typeof SERVICE_KEY === 'string'
-                ? JSON.parse(SERVICE_KEY)
-                : SERVICE_KEY;
         admin.initializeApp({
             credential: admin.credential.cert(serviceAccount),
         });
