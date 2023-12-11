@@ -1,11 +1,13 @@
 const Cloud = require('@google-cloud/storage');
 const StandardError = require('../../utils/standard-error');
 const { GCP_PROJECT_NAME, GCP_BUCKET_NAME } = process.env;
-const serviceAccount = 'gs://recraftify-service.appspot.com/keys.json';
+const path = require('path');
+const serviceAccount = path.join(__dirname, '../config/keys.json');
 const { Storage } = Cloud;
 
 async function getBucket() {
     let bucket;
+
     try {
         const storage = new Storage({
             keyFilename: serviceAccount,

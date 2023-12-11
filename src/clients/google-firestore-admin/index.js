@@ -1,6 +1,7 @@
 var admin = require('firebase-admin');
 var { getFirestore } = require('firebase-admin/firestore');
-const serviceAccount = 'gs://recraftify-service.appspot.com/keys.json';
+const path = require('path');
+const serviceAccount = path.join(__dirname, '../config/keys.json');
 
 function getDB() {
     if (!admin.apps.length) {
