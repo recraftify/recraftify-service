@@ -53,6 +53,17 @@ env:
   GAR_LOCATION: asia-southeast2 # TODO: update Artifact Registry location
   SERVICE: recraftify-main-service # TODO: update Cloud Run service name
   REGION: asia-southeast2 # TODO: update Cloud Run service region
+  PORT : 8080
+  JWT_SECRET_KEY: R3CR4F71FY
+  JWT_EXPIRE: 1h
+  GCP_PROJECT_NAME : recraftify-service
+  GCP_BUCKET_NAME : recraftify-service.appspot.com
+  API_KEY : AIzaSyBQA-2I1y-rKF29dQR7XfM0ap1IMApYh8g
+  AUTH_DOMAIN : recraftify-service.firebaseapp.com
+  STORAGE_BUCKET : recraftify-service.appspot.com
+  MESSAGING_SENDER_ID : 201869056725
+  APP_ID : 1:201869056725:web:5656efed06a852f770e05c
+  MEASUREMENT_ID : G-3QGLH3M25M
 
 jobs:
   deploy:
