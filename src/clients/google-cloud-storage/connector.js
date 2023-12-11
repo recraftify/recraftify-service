@@ -6,9 +6,11 @@ const { Storage } = Cloud;
 
 async function getBucket() {
     let bucket;
+    const serviceAccount =
+        typeof SERVICE_KEY === 'string' ? JSON.parse(SERVICE_KEY) : SERVICE_KEY;
     try {
         const storage = new Storage({
-            keyFilename: SERVICE_KEY,
+            keyFilename: serviceAccount,
             projectId: GCP_PROJECT_NAME,
         });
 
