@@ -1,24 +1,14 @@
 const { initializeApp } = require('firebase/app');
 const { getFirestore } = require('firebase/firestore');
 const { getAuth } = require('firebase/auth');
-const {
-    API_KEY,
-    AUTH_DOMAIN,
-    PROJECT_ID,
-    STORAGE_BUCKET,
-    MESSAGING_SENDER_ID,
-    APP_ID,
-    MEASUREMENT_ID,
-} = process.env;
-
 const firebaseConfig = {
-    apiKey: API_KEY,
-    authDomain: AUTH_DOMAIN,
-    projectId: PROJECT_ID,
-    storageBucket: STORAGE_BUCKET,
-    messagingSenderId: MESSAGING_SENDER_ID,
-    appId: APP_ID,
-    measurementId: MEASUREMENT_ID,
+    apiKey: 'AIzaSyBQA-2I1y-rKF29dQR7XfM0ap1IMApYh8g',
+    authDomain: 'recraftify-service.firebaseapp.com',
+    projectId: 'recraftify-service',
+    storageBucket: 'recraftify-service.appspot.com',
+    messagingSenderId: '201869056725',
+    appId: '1:201869056725:web:5656efed06a852f770e05c',
+    measurementId: 'G-3QGLH3M25M',
 };
 
 const app = initializeApp(firebaseConfig);
