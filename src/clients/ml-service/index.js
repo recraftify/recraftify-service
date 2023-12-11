@@ -4,7 +4,7 @@ const axios = require('axios');
 class MLService {
     static async predictWaste(imageUrl) {
         const response = await axios.post(`${ML_API_URL}/predict`, {
-            imageUrl,
+            image_url: imageUrl,
         });
         return response.data;
     }
