@@ -1,7 +1,7 @@
 const Cloud = require('@google-cloud/storage');
 const StandardError = require('../../utils/standard-error');
 const { GCP_PROJECT_NAME, GCP_BUCKET_NAME } = process.env;
-const { SERVICE_KEY } = process.secrets;
+const { SERVICE_KEY } = process.env;
 const { Storage } = Cloud;
 
 async function getBucket() {
