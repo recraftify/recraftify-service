@@ -1,5 +1,6 @@
 const WasteRepository = require('../../repositories/waste-repository');
 const { uploadImage } = require('../../utils/storage');
+const MLService = require('../ml-service');
 
 class WasteService {
     static async getWaste() {
@@ -19,9 +20,10 @@ class WasteService {
     static async scanWaste(image) {
         const image_buffer = image[0];
         const imageUrl = await uploadImage(image_buffer);
+        const response = await MLService.predictWaste(imageUrl);
         return {
-            message: 'Uploading image successful',
-            data: imageUrl,
+            message: 'Scanning waste successful',
+            data: response,
         };
     }
 }
