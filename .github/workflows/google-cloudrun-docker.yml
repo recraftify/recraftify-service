@@ -92,6 +92,9 @@ jobs:
 
       # END - Docker auth and build
 
+      - name: Set up Environment Variables
+        run: echo "FIREBASE_SERVICE_KEY=${{ secrets.SERVICE_KEY }}" >> $GITHUB_ENV
+
       - name: Deploy to Cloud Run
         id: deploy
         uses: google-github-actions/deploy-cloudrun@v1
