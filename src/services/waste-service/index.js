@@ -1,6 +1,6 @@
 const WasteRepository = require('../../repositories/waste-repository');
 const { uploadImage } = require('../../utils/storage');
-const MLService = require('../ml-service');
+const MLService = require('../../clients/ml-service');
 
 class WasteService {
     static async getWaste() {
