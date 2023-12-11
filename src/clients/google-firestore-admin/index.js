@@ -1,7 +1,7 @@
 var admin = require('firebase-admin');
 var { getFirestore } = require('firebase-admin/firestore');
 
-const { SERVICE_KEY } = process.secrets;
+const { SERVICE_KEY } = process.env;
 
 function getDB() {
     if (!admin.apps.length) {
