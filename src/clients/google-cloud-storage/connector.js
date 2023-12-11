@@ -5,10 +5,9 @@ const { Storage } = Cloud;
 
 async function getBucket() {
     let bucket;
-    const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_KEY);
     try {
         const storage = new Storage({
-            keyFilename: serviceAccount,
+            keyFilename: process.env.FIREBASE_SERVICE_KEY,
             projectId: GCP_PROJECT_NAME,
         });
 
