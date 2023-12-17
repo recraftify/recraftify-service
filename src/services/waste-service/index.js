@@ -63,27 +63,11 @@ class WasteService {
         if (trash_type === 'organic') {
             image_result =
                 'https://firebasestorage.googleapis.com/v0/b/recraftify-service.appspot.com/o/image%2Fwaste%2Ftong%2Forganik.png?alt=media&token=fe4746a0-cdae-4aec-b4cd-3c960497eab8';
-            return {
-                message: 'Scanning waste successful',
-                data: {
-                    uploaded_image,
-                    trash_type,
-                    image_result,
-                },
-            };
         }
 
         if (trash_type === 'recyclable') {
             image_result =
                 'https://firebasestorage.googleapis.com/v0/b/recraftify-service.appspot.com/o/image%2Fwaste%2Ftong%2Fanorganik.png?alt=media&token=cfac5b9f-1442-496d-9347-f3bd31fb23f0';
-            return {
-                message: 'Scanning waste successful',
-                data: {
-                    uploaded_image,
-                    trash_type,
-                    image_result,
-                },
-            };
         }
 
         if (trash_type === 'recyclable || organic') {
