@@ -70,7 +70,7 @@ class WasteService {
                 'https://firebasestorage.googleapis.com/v0/b/recraftify-service.appspot.com/o/image%2Fwaste%2Ftong%2Fanorganik.png?alt=media&token=cfac5b9f-1442-496d-9347-f3bd31fb23f0';
         }
 
-        if (trash_type === 'recyclable || organic') {
+        if (trash_type === 'recyclable' || trash_type === 'organic') {
             const recommendation =
                 await WasteRepository.getWasteByType(trash_type);
             return {
