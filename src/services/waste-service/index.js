@@ -52,8 +52,6 @@ class WasteService {
             image_result,
         };
 
-        await WasteRepository.createWasteScanHistory(data, user_id);
-
         if (trash_type === 'recyclable' || trash_type === 'organic') {
             const recommendation =
                 await WasteRepository.getWasteByType(trash_type);
@@ -75,6 +73,8 @@ class WasteService {
                 },
             };
         }
+
+        await WasteRepository.createWasteScanHistory(data, user_id);
         return {
             message: 'Scanning waste successful',
             data: {
