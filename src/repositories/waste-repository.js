@@ -38,5 +38,34 @@ class WasteRepository {
             );
         }
     }
+
+    static async getWasteByType(type) {
+        try {
+            const DB = await getDB();
+            const wasteSnapshot = await DB.collection('waste')
+                .where('type', '==', type)
+                .get();
+            if (!wasteSnapshot.empty) {
+                const wasteData = wasteSnapshot.docs.map((doc) => {
+                    return {
+                        id: doc.id,
+                        name: doc.data().name,
+                        image: doc.data().image,
+                    };
+                });
+                return wasteData;
+            }
+        } catch (error) {
+            throw new StandardError(
+                500,
+                'DATABASE_ERROR',
+                'Error occured in database',
+                error,
+                {
+                    type,
+                },
+            );
+        }
+    }
 }
 module.exports = WasteRepository;
