@@ -18,7 +18,7 @@ class WasteService {
         };
     }
 
-    static async scanWaste(image) {
+    static async scanWaste(image, user_id) {
         const image_buffer = image[0];
         const uploaded_image = await uploadImage(image_buffer);
         const predictResult = await MLService.predictWaste(uploaded_image);
@@ -27,38 +27,14 @@ class WasteService {
         if (trash_type === 'uncertain') {
             image_result =
                 'https://firebasestorage.googleapis.com/v0/b/recraftify-service.appspot.com/o/image%2Fwaste%2Ftong%2Funcertain.png?alt=media&token=91673a6d-c687-4130-ac9e-8c25819dd4cf';
-            return {
-                message: 'Scanning waste successful',
-                data: {
-                    uploaded_image,
-                    trash_type,
-                    image_result,
-                },
-            };
         }
         if (trash_type === 'residue') {
             image_result =
                 'https://firebasestorage.googleapis.com/v0/b/recraftify-service.appspot.com/o/image%2Fwaste%2Ftong%2Fresidu.png?alt=media&token=56c3c896-e395-4ed3-a836-323be6ec1f03';
-            return {
-                message: 'Scanning waste successful',
-                data: {
-                    uploaded_image,
-                    trash_type,
-                    image_result,
-                },
-            };
         }
         if (trash_type === 'b3') {
             image_result =
                 'https://firebasestorage.googleapis.com/v0/b/recraftify-service.appspot.com/o/image%2Fwaste%2Ftong%2Fb3.png?alt=media&token=9daafc7f-5047-47c3-bc24-d585ef1bcb05';
-            return {
-                message: 'Scanning waste successful',
-                data: {
-                    uploaded_image,
-                    trash_type,
-                    image_result,
-                },
-            };
         }
         if (trash_type === 'organic') {
             image_result =
@@ -70,9 +46,25 @@ class WasteService {
                 'https://firebasestorage.googleapis.com/v0/b/recraftify-service.appspot.com/o/image%2Fwaste%2Ftong%2Fanorganik.png?alt=media&token=cfac5b9f-1442-496d-9347-f3bd31fb23f0';
         }
 
+        let data = {
+            uploaded_image,
+            trash_type,
+            image_result,
+        };
+
+        await WasteRepository.createWasteScanHistory(data, user_id);
+
         if (trash_type === 'recyclable' || trash_type === 'organic') {
             const recommendation =
                 await WasteRepository.getWasteByType(trash_type);
+            data = {
+                uploaded_image,
+                trash_type,
+                recommendation,
+                image_result,
+            };
+
+            await WasteRepository.createWasteScanHistory(data, user_id);
             return {
                 message: 'Scanning waste successful',
                 data: {
@@ -83,6 +75,14 @@ class WasteService {
                 },
             };
         }
+        return {
+            message: 'Scanning waste successful',
+            data: {
+                uploaded_image,
+                trash_type,
+                image_result,
+            },
+        };
     }
 }
 
