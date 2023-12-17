@@ -43,7 +43,7 @@ class WasteRepository {
         try {
             const DB = await getDB();
             const wasteSnapshot = await DB.collection('waste')
-                .where('type', '==', type)
+                .where('waste_type', '==', type)
                 .get();
             if (!wasteSnapshot.empty) {
                 const wasteData = wasteSnapshot.docs.map((doc) => {
