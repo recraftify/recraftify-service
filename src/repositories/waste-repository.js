@@ -67,5 +67,32 @@ class WasteRepository {
             );
         }
     }
+
+    static async createWasteScanHistory(data, userId) {
+        try {
+            const DB = await getDB();
+            const wasteScanHistoryRef = await DB.collection(
+                'waste_scan_history',
+            ).add({
+                ...data,
+                user_id: userId,
+                created_at: new Date().toISOString(),
+            });
+            const wasteScanHistory = await wasteScanHistoryRef.get();
+            if (wasteScanHistory.exists) {
+                return wasteScanHistory.data();
+            }
+        } catch (error) {
+            throw new StandardError(
+                500,
+                'DATABASE_ERROR',
+                'Error occured in database',
+                error,
+                {
+                    data,
+                },
+            );
+        }
+    }
 }
 module.exports = WasteRepository;

@@ -24,7 +24,8 @@ module.exports = () => {
         '/scan',
         [JWTMiddleware.verifyToken, uploadFile],
         handleRequest(
-            async (req) => await WasteService.scanWaste(req.body.image),
+            async (req) =>
+                await WasteService.scanWaste(req.body.image, req.user.id),
         ),
         buildResponse(),
     );
