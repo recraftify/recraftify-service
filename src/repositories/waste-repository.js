@@ -7,7 +7,13 @@ class WasteRepository {
             const DB = await getDB();
             const wasteSnapshot = await DB.collection('waste').get();
             if (!wasteSnapshot.empty) {
-                const wasteData = wasteSnapshot.docs.map((doc) => doc.data());
+                const wasteData = wasteSnapshot.docs.map((doc) => {
+                    return {
+                        id: doc.id,
+                        name: doc.data().name,
+                        image: doc.data().image,
+                    };
+                });
                 return wasteData;
             }
         } catch (error) {
@@ -94,5 +100,63 @@ class WasteRepository {
             );
         }
     }
+
+    static async getAllWasteScanHistory(userId) {
+        try {
+            const DB = await getDB();
+            const wasteScanHistorySnapshot = await DB.collection(
+                'waste_scan_history',
+            )
+                .where('user_id', '==', userId)
+                .get();
+            if (!wasteScanHistorySnapshot.empty) {
+                const wasteScanHistoryData = wasteScanHistorySnapshot.docs.map(
+                    (doc) => {
+                        return {
+                            id: doc.id,
+                            trash_type: doc.data().trash_type,
+                            uploaded_image: doc.data().uploaded_image,
+                        };
+                    },
+                );
+                return wasteScanHistoryData;
+            }
+        } catch (error) {
+            throw new StandardError(
+                500,
+                'DATABASE_ERROR',
+                'Error occured in database',
+                error,
+                {
+                    userId,
+                },
+            );
+        }
+    }
+
+    static async getWasteScanHistoryById(id) {
+        try {
+            const DB = await getDB();
+            const wasteScanHistorySnapshot = await DB.collection(
+                'waste_scan_history',
+            )
+                .doc(id)
+                .get();
+            if (wasteScanHistorySnapshot.exists) {
+                return wasteScanHistorySnapshot.data();
+            }
+        } catch (error) {
+            throw new StandardError(
+                500,
+                'DATABASE_ERROR',
+                'Error occured in database',
+                error,
+                {
+                    id,
+                },
+            );
+        }
+    }
 }
+
 module.exports = WasteRepository;
