@@ -29,5 +29,22 @@ module.exports = () => {
         ),
         buildResponse(),
     );
+    wasteRouter.get(
+        '/scan/history',
+        [JWTMiddleware.verifyToken],
+        handleRequest(
+            async (req) => await WasteService.getWasteScanHistory(req.user.id),
+        ),
+        buildResponse(),
+    );
+    wasteRouter.get(
+        '/scan/history/:id',
+        [JWTMiddleware.verifyToken],
+        handleRequest(
+            async (req) =>
+                await WasteService.getWasteScanHistoryById(req.params.id),
+        ),
+        buildResponse(),
+    );
     return wasteRouter;
 };

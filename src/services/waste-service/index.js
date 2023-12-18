@@ -5,6 +5,13 @@ const MLService = require('../../clients/ml-service');
 class WasteService {
     static async getWaste() {
         const waste = await WasteRepository.getAllWaste();
+
+        if (!waste) {
+            return {
+                message: 'Waste not found',
+                data: null,
+            };
+        }
         return {
             message: 'Fetching waste successful',
             data: waste,
@@ -12,6 +19,12 @@ class WasteService {
     }
     static async getWasteById(id) {
         const waste = await WasteRepository.getWasteById(id);
+        if (!waste) {
+            return {
+                message: `Waste with id ${id} not found`,
+                data: null,
+            };
+        }
         return {
             message: `Fetching waste with id ${id} successful`,
             data: waste,
@@ -77,11 +90,37 @@ class WasteService {
         await WasteRepository.createWasteScanHistory(data, user_id);
         return {
             message: 'Scanning waste successful',
-            data: {
-                uploaded_image,
-                trash_type,
-                image_result,
-            },
+            data: data,
+        };
+    }
+
+    static async getWasteScanHistory(userId) {
+        const wasteScanHistory =
+            await WasteRepository.getAllWasteScanHistory(userId);
+        if (!wasteScanHistory) {
+            return {
+                message: `Waste scan history with user id ${userId} not found`,
+                data: null,
+            };
+        }
+        return {
+            message: 'Fetching waste scan history successful',
+            data: wasteScanHistory,
+        };
+    }
+
+    static async getWasteScanHistoryById(id) {
+        const wasteScanHistory =
+            await WasteRepository.getWasteScanHistoryById(id);
+        if (!wasteScanHistory) {
+            return {
+                message: `Waste scan history with id ${id} not found`,
+                data: null,
+            };
+        }
+        return {
+            message: `Fetching waste scan history with id ${id} successful`,
+            data: wasteScanHistory,
         };
     }
 }
