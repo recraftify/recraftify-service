@@ -81,7 +81,6 @@ class WasteRepository {
                 'waste_scan_history',
             ).add({
                 ...data,
-                id: DB.collection('waste_scan_history').doc().id,
                 user_id: userId,
                 created_at: new Date().toISOString(),
             });
