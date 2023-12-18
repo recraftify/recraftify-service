@@ -4,6 +4,8 @@ const wasteRouter = require('express').Router();
 const WasteService = require('../services/waste-service');
 const JWTMiddleware = require('../middlewares/jwt');
 const { uploadFile } = require('../middlewares/file');
+const validator = require('express-joi-validation').createValidator({});
+const Joi = require('joi');
 
 module.exports = () => {
     wasteRouter.get(
@@ -15,6 +17,11 @@ module.exports = () => {
     wasteRouter.get(
         '/:id',
         [JWTMiddleware.verifyToken],
+        validator.params(
+            Joi.object({
+                id: Joi.string().required(),
+            }),
+        ),
         handleRequest(
             async (req) => await WasteService.getWasteById(req.params.id),
         ),
@@ -23,6 +30,11 @@ module.exports = () => {
     wasteRouter.post(
         '/scan',
         [JWTMiddleware.verifyToken, uploadFile],
+        validator.body(
+            Joi.object({
+                image: Joi.array().required(),
+            }),
+        ),
         handleRequest(
             async (req) =>
                 await WasteService.scanWaste(req.body.image, req.user.id),
@@ -40,6 +52,11 @@ module.exports = () => {
     wasteRouter.get(
         '/scan/history/:id',
         [JWTMiddleware.verifyToken],
+        validator.params(
+            Joi.object({
+                id: Joi.string().required(),
+            }),
+        ),
         handleRequest(
             async (req) =>
                 await WasteService.getWasteScanHistoryById(req.params.id),
