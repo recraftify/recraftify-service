@@ -30,8 +30,8 @@ class GCPStorageClient {
                                 err,
                             ),
                         );
-                    });
-                blobStream.end(buffer);
+                    })
+                    .end(buffer);
             });
         } catch (err) {
             throw new StandardError(

@@ -20,10 +20,9 @@ const serviceAccount = {
 
 async function getBucket() {
     let bucket;
-
     try {
         const storage = new Storage({
-            keyFilename: serviceAccount,
+            credentials: serviceAccount,
             projectId: GCP_PROJECT_NAME,
         });
 
@@ -32,7 +31,7 @@ async function getBucket() {
         throw new StandardError(
             500,
             'CLOUD_ERROR',
-            'Something is wrong with the cloud storage, check the credentials',
+            'Something is wrong with the cloud storage',
             err,
         );
     }
