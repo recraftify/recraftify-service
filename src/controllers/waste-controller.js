@@ -30,11 +30,6 @@ module.exports = () => {
     wasteRouter.post(
         '/scan',
         [JWTMiddleware.verifyToken, uploadFile],
-        validator.body(
-            Joi.object({
-                image: Joi.array().required(),
-            }),
-        ),
         handleRequest(
             async (req) =>
                 await WasteService.scanWaste(req.body.image, req.user.id),
