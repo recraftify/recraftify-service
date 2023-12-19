@@ -32,7 +32,7 @@ async function getBucket() {
         throw new StandardError(
             500,
             'CLOUD_ERROR',
-            'Something is wrong with the cloud storage',
+            'Something is wrong with the cloud storage, check the credentials',
             err,
         );
     }
