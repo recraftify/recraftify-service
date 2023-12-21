@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const UserRepository = require('../../repositories/user-repository');
 const StandardError = require('../../utils/standard-error');
 const { LogHelper } = require('../../utils/log-helper');
-const { JWT_SECRET_KEY, JWT_EXPIRE } = process.env;
+const { JWT_SECRET_KEY } = process.env;
 
 function generateErrorUnauthorized(req) {
     return new StandardError(
@@ -62,9 +62,7 @@ class JWTMiddleware {
     }
 
     static createToken(user_id) {
-        return jwt.sign({ user_id: user_id }, JWT_SECRET_KEY, {
-            expiresIn: JWT_EXPIRE,
-        });
+        return jwt.sign({ user_id: user_id }, JWT_SECRET_KEY);
     }
 }
 
